@@ -1,0 +1,383 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: #C4E0E5;
+}
+
+header {
+  z-index: 4;
+  position: fixed;
+  background: #8E0E00;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #1F1C18, #8E0E00);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1F1C18, #8E0E00);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  padding: 20px;
+  width: calc(100% - 0%);
+  top: 0;
+  height: 70px;
+
+}
+
+.left_area h3 {
+  color: #ff6b6b;
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.left_area span {
+  color: #4cc9f0;
+  font-size: 10px;
+}
+
+.direction {
+  color: white;
+}
+
+#search{
+  float: right;
+}
+#keyword{
+  border-radius: 20px;
+  
+}
+
+.right_area ul li {
+  list-style-type: none;
+  float: left;
+}
+
+.right_area ul li a {
+  background: #fff;
+  color: #000;
+  display: block;
+  margin: 0 10px;
+  font-size: 18px;
+  width: 34px;
+  height: 34px;
+  line-height: 35px;
+  text-align: center;
+  border-radius: 50%;
+  transition: 0.3s;
+  transition-property: background, color;
+
+}
+
+.right_area ul li a:hover {
+  background: #4CCEE8;
+  color: #fff;
+}
+
+label #sidebar_btn {
+  z-index: 1;
+  color: #ffffff;
+  position: fixed;
+  cursor: pointer;
+  font-size: 22px;
+  transition: 0.5s;
+  transition-property: color;
+}
+
+label #sidebar_btn:hover {
+  color: #4cc9f0;
+}
+label #sidebar_btn1 {
+  padding-left: 20px;
+  color: #ffffff;
+  position: fixed;
+  cursor: pointer;
+  font-size: 22px;
+  transition: 0.5s;
+  transition-property: color;
+}
+
+label #sidebar_btn1:hover {
+  color: #4cc9f0;
+}
+
+
+.logout_btn {
+  padding: 5px;
+  background: #4cc9f0;
+  text-decoration: none;
+  border-radius: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  transition: 0.5s;
+  transition-property: background;
+}
+
+.logout_btn:hover {
+  background: #ff6b6b;
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar {
+  z-index: 0;
+  top: 0;
+  background: #343a40;
+  margin-top: 70px;
+  padding-top: 30px;
+  position: absolute;
+  left: 0;
+  width: 200px;
+  height: auto;
+  transition: 0.5s;
+  transition-property: left;
+  overflow: hidden;
+
+
+}
+
+.profile_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar .profile_info .profile_image {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+}
+
+.sidebar .profile_info h4 {
+  color: #ced4da;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+hr {
+  background-color: white;
+}
+
+.sidebar a {
+  color: #8ecae6;
+  display: block;
+  width: 100%;
+  line-height: 60px;
+  text-decoration: none;
+  padding-left: 30px;
+  box-sizing: border-box;
+  transition: 0.5s;
+  transition-property: background;
+}
+
+.sidebar a:hover {
+  background: #4cc9f0;
+  color: #343a40;
+}
+
+.sidebar i {
+  padding-right: 10px;
+}
+
+
+#check:checked~.sidebar {
+  left: -145px;
+}
+
+#check:checked~.sidebar a span {
+  display: none;
+}
+
+#check:checked~.sidebar a {
+  font-size: 20px;
+  margin-left: 130px;
+  width: 100%;
+}
+
+.content {
+  width: (100% - 200px);
+  margin-top: 60px;
+  padding: 20px;
+  margin-left: 200px;
+  transition: 0.5s;
+
+
+}
+#check1:checked~.sidebar {
+  left: -200px;
+}
+#check1:checked~.sidebar a span {
+  display: none;
+}
+
+#check1:checked~.sidebar a {
+  width: 100%;
+}
+#check1:checked~.content {
+  margin-left: 0px;
+}
+
+#check1:checked~.sidebar .profile_info {
+  display: none;
+}
+
+#check1{
+  display: none;
+}
+#check:checked~.content {
+  margin-left: 60px;
+}
+
+#check:checked~.sidebar .profile_info {
+  display: none;
+}
+
+#check {
+  display: none;
+}
+
+.mobile_nav {
+  display: none;
+}
+
+  /* Responsive CSS */
+  
+  @media screen and (max-width: 780px) {
+    .sidebar {
+      display: none;
+    }
+  
+    #search {
+      display: none;
+    }
+  
+    .direction {
+      float: center;
+    }
+  
+    #sidebar_btn {
+      display: none;
+    }
+    .right_area{
+      display:none;
+    }
+  
+    .content {
+      margin-left: 0;
+      margin-top: 0;
+      padding: 10px 20px;
+      transition: 0s;
+    }
+  
+    #check:checked~.content {
+      margin-left: 0;
+    }
+  
+    .mobile_nav {
+      display: block;
+      width: calc(100% - 0%);
+    }
+  
+  
+    .nav_bar {
+      background: #343a40;
+      width: (100% - 0px);
+      margin-top: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+  
+    .nav_bar .mobile_profile_image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+  
+  
+    .nav_bar .nav_btn {
+      color: #ffffff;
+      font-size: 22px;
+      cursor: pointer;
+      transition: 0.5s;
+      transition-property: color;
+    }
+  
+    .nav_bar .nav_btn:hover {
+      color: #8ecae6;
+    }
+  
+    .mobile_nav_items {
+      background: #2b2d42;
+      display: none;
+    }
+  
+    .mobile_nav_items a {
+      color: #8ecae6;
+      display: block;
+      text-align: center;
+      letter-spacing: 1px;
+      line-height: 60px;
+      text-decoration: none;
+      box-sizing: border-box;
+      transition: 0.5s;
+      transition-property: background;
+    }
+  
+    .mobile_nav_items a:hover {
+      background: #4cc9f0;
+      color: #343a40;
+    }
+  
+    .mobile_nav_items i {
+      padding-right: 10px;
+    }
+  
+    .active {
+      display: block;
+    }
+  }
+  
+
+#draggable,#draggable1 {
+     width: 150px; 
+     height: 150px; 
+     padding: 0.5em; 
+    }
+
+
+.context-menu{
+  width: 200px;
+  height: auto;
+  box-shadow: 0 0 20px 0 #ccc;
+  position: absolute;
+  display: none;
+}
+
+.context-menu ul{
+  list-style: none;
+  padding: 5px 0px 5px 0px;
+}
+
+.context-menu ul li:not(.separator){
+  background: white;
+  padding: 10px 5px 10px 5px;
+  border-left: 4px solid transparent;
+  cursor: pointer;
+}
+
+.context-menu ul li:hover{
+  background: #eee;
+  border-left: 4px solid #666;
+}
+
+.separator{
+  height: 1px;
+  background: #dedede;
+  margin: 2px 0px 2px 0px;
+}

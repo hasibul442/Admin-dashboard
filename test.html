@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+
+    <!-----Bootstrap CDN---------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <!------------Responsive Table cdn------------->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/rowreorder/1.2.6/css/rowReorder.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/fixedcolumns/3.3.2/css/fixedColumns.dataTables.min.css">
+
+    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="test.scss">
+
+    <link rel="icon" href="./img/iconfinder_76_5027870.png" type="image/icon type">
+</head>
+
+<body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+        <div class="row">
+            <div class="col-2">
+                <div class="left_area">
+                    <h3>VMS <span>(1.2.32)</span></h3>
+                </div>
+
+            </div>
+            <div class="col-1">
+                <label for="check">
+                    <i class="fas fa-bars" id="sidebar_btn"></i>
+                </label>
+            </div>
+            <div class="col-2 direction1">
+                <p class="direction">Home>Planner></p>
+            </div>
+            <div class="col-4" id="search">
+                <!-- Search form -->
+                <div class="md-form mt-0 active-purple active-purple-2">
+                    <input class="form-control border-0" type="text" placeholder="Keyword" aria-label="Search"
+                        id="keyword">
+                </div>
+
+            </div>
+            <div class="col-3">
+
+                <div class="right_area float-right">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-user-tie"></i></a></li>
+                        <li><a href="#"><i class="fas fa-bell"></i></a></li>
+                        <li><a href="#"><i class="fas fa-power-off"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--header area end-->
+    <!--mobile navigation bar start-->
+    <div class="mobile_nav">
+        <div class="nav_bar">
+            <img src="./img/bamo_logo_design_dark.webp" class="mobile_profile_image" alt="">
+            <i class="fa fa-bars nav_btn"></i>
+        </div>
+        <div class="mobile_nav_items">
+            <a href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
+            <a href="planner.html"><i class="fas fa-lightbulb"></i><span>Planner</span></a>
+            <a href="test.html"><i class="fas fa-cubes"></i><span>Tests</span></a>
+            <a href="#"><i class="fab fa-artstation"></i><span>Regressions</span></a>
+            <a href="#"><i class="fas fa-envelope"></i><span>Messages</span></a>
+            <a href="#"><i class="fas fa-bell"></i><span>Notification</span></a>
+            <a href="#"><i class="fas fa-calculator"></i><span>Metrics</span></a>
+            <a href="#"><i class="fas fa-bug"></i><span>Debug</span></a>
+            <a href="#"><i class="fas fa-chart-area"></i><span>Charts</span></a>
+            <a href="#"><i class="fas fa-cogs"></i><span>Settings</span></a>
+            <a href="#"><i class="fab fa-audible"></i><span>Adminstration</span></a>
+            <a href="#"><i class="fas fa-power-off"></i><span>Log Out</span></a>
+        </div>
+    </div>
+    <!--mobile navigation bar end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+        <div class="profile_info text-center">
+            <img src="./img/bamo_logo_design_dark.webp" class="profile_image" alt="">
+        </div>
+        <a href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
+        <hr>
+        <a href="planner.html"><i class="fas fa-lightbulb"></i><span>Planner</span></a>
+        <a href="#"><i class="fas fa-cubes"></i><span>Tests</span></a>
+        <a href="#"><i class="fab fa-artstation"></i><span>Regressions</span></a>
+        <a href="#"><i class="fas fa-envelope"></i><span>Messages</span></a>
+        <hr>
+        <a href="#"><i class="fas fa-calculator"></i><span>Metrics</span></a>
+        <a href="#"><i class="fas fa-bug"></i><span>Debug</span></a>
+        <a href="#"><i class="fas fa-chart-area"></i><span>Charts</span></a>
+        <hr>
+        <a href="#"><i class="fas fa-cogs"></i><span>Settings</span></a>
+        <a href="#"><i class="fab fa-audible"></i><span>Adminstration</span></a>
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+        
+
+
+        <div class="card-deck mt-5">
+            <div class="draggable-card col-md-12" oncontextmenu="return showContextMenu(event);">
+                <!-- Card -->
+                
+                <div class="card mb-4" id="box2">
+                    <div id="close_btn1">
+                        <button class="btn btn-sm float-right" id="close"
+                            onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'><i
+                                class="fas fa-times"></i></button>
+                    </div>
+                    <!--Card content-->
+                   
+                    <div class="card-body">
+                            <table class=" table-striped table-bordered table-sm hover" id="mytable">
+                                <thead style="background-color:  #ffa997;">
+                                    <tr>
+                                        <th><input type="checkbox"></th>
+                                        <th class="col-sm-1">Name</th>
+                                        <th>State</th>
+                                        <th>Stopped <br>By Rule</th>
+                                        <th>tot</th>
+                                        <th>R</th>
+                                        <th>Q</th>
+                                        <th>P</th>
+                                        <th>F</th>
+                                        <th>W</th>
+                                        <th>A</th>
+                                        <th>U</th>
+                                        <th>Summary</th>
+                                        <th>Summary<br> Log</th>
+                                        <th>Sys.Ev</th>
+                                        <th>D.Ready</th>
+                                        <th>D.Mis</th>
+                                        <th>Start Time</th>
+                                        <th>End Time</th>
+                                        <th>Comment</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>Session_regress_28377363_27636337</td>
+                                        <td>running</td>
+                                        <td>-</td>
+                                        <td>667</td>
+                                        <td class="text-success">295</td>
+                                        <td>0</td>
+                                        <td class="text-success">419</td>
+                                        <td class="text-danger">12</td>
+                                        <td class="text-warning">22</td>
+                                        <td class="text-danger">0</td>
+                                        <td>0</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" style="width: 32%;" aria-valuenow="32"
+                                                    aria-valuemin="0" aria-valuemax="100">32%</div>
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 35%;"
+                                                    aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">62%</div>
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 10%;"
+                                                    aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">2%</div>
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 15%;"
+                                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">4%</div>
+                                                <div class="progress-bar bg-secondary" role="progressbar" style="width: 8%;"
+                                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">1%</div>
+                                            </div>
+                                        </td>
+                                        <td>-</td>
+                                        <td class="text-success">0</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>2020/11/03 08:15:16</td>
+                                        <td>-</td>
+                                        <td>Click To add comment</td>
+                                        <td>
+                                            <a href="#"><i class="fas fa-eye"></i></a>
+                                            <a href="#"> <i class="fas fa-chart-bar" style="color: #ffa263;"></i></a>
+                                            <a href="#"><i class="fas fa-info-circle" style="color: #ffb0fc;"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>Session_regress_28377363_27636336</td>
+                                        <td>running</td>
+                                        <td>-</td>
+                                        <td>658</td>
+                                        <td class="text-success">13</td>
+                                        <td>0</td>
+                                        <td class="text-success">534</td>
+                                        <td class="text-danger">87</td>
+                                        <td class="text-warning">24</td>
+                                        <td class="text-danger">0</td>
+                                        <td>0</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 10%;"
+                                                    aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">2%</div>
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 60%;"
+                                                    aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">80%</div>
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 20%;"
+                                                    aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">13%</div>
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 15%;"
+                                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">4%</div>
+                                            </div>
+                                        </td>
+                                        <td>-</td>
+                                        <td class="text-success">0</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>2020/11/02 08:00:30</td>
+                                        <td>-</td>
+                                        <td>Click To add comment</td>
+                                        <td>
+                                            <a href="#"><i class="fas fa-eye"></i></a>
+                                            <a href="#"> <i class="fas fa-chart-bar" style="color: #ffa263;"></i></a>
+                                            <a href="#"><i class="fas fa-info-circle" style="color: #ffb0fc;"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>Session_regress_28377363_27636335</td>
+                                        <td>running</td>
+                                        <td>-</td>
+                                        <td>611</td>
+                                        <td class="text-success">13</td>
+                                        <td>0</td>
+                                        <td class="text-success">528</td>
+                                        <td class="text-danger">62</td>
+                                        <td class="text-warning">8</td>
+                                        <td class="text-danger">0</td>
+                                        <td>0</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 10%;"
+                                                    aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">2%</div>
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 65%;"
+                                                    aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">87%</div>
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 20%;"
+                                                    aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">10%</div>
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 10%;"
+                                                    aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">1%</div>
+                                            </div>
+                                        </td>
+                                        <td>-</td>
+                                        <td class="text-success">0</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>2020/11/01 08:15:16</td>
+                                        <td>-</td>
+                                        <td>Click To add comment</td>
+                                        <td>
+                                            <a href="#"><i class="fas fa-eye"></i></a>
+                                            <a href="#"> <i class="fas fa-chart-bar" style="color: #ffa263;"></i></a>
+                                            <a href="#"><i class="fas fa-info-circle" style="color: #ffb0fc;"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>Session_regress_28377363_27636334</td>
+                                        <td class="bg-success text-center">Completed</td>
+                                        <td>-</td>
+                                        <td>632</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td class="text-success">528</td>
+                                        <td class="text-danger">60</td>
+                                        <td class="text-warning">44</td>
+                                        <td class="text-danger">0</td>
+                                        <td>0</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" style="width: 32%;" aria-valuenow="32"
+                                                    aria-valuemin="0" aria-valuemax="100">32%</div>
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 35%;"
+                                                    aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">62%</div>
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 10%;"
+                                                    aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">2%</div>
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 15%;"
+                                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">4%</div>
+                                                <div class="progress-bar bg-secondary" role="progressbar" style="width: 8%;"
+                                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">1%</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            Log
+                                        </td>
+                                        <td class="text-success">0</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>2020/10/31 08:15:16</td>
+                                        <td>2020/11/03 07:18:04</td>
+                                        <td>Click To add comment</td>
+                                        <td>
+                                            <a href="#"><i class="fas fa-eye"></i></a>
+                                            <a href="#"> <i class="fas fa-chart-bar" style="color: #ffa263;"></i></a>
+                                            <a href="#"><i class="fas fa-info-circle" style="color: #ffb0fc;"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>Session_regress_28377363_27636333</td>
+                                        <td class="bg-success text-center">Completed</td>
+                                        <td>-</td>
+                                        <td>632</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td class="text-success">528</td>
+                                        <td class="text-danger">60</td>
+                                        <td class="text-warning">44</td>
+                                        <td class="text-danger">0</td>
+                                        <td>0</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" style="width: 32%;" aria-valuenow="32"
+                                                    aria-valuemin="0" aria-valuemax="100">32%</div>
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 35%;"
+                                                    aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">62%</div>
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 10%;"
+                                                    aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">2%</div>
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 15%;"
+                                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">4%</div>
+                                                <div class="progress-bar bg-secondary" role="progressbar" style="width: 8%;"
+                                                    aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">1%</div>
+                                            </div>
+                                        </td>
+                                        <td>Log</td>
+                                        <td class="text-warning">3</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>2020/10/31 08:15:16</td>
+                                        <td>2020/11/03 07:18:04</td>
+                                        <td>Click To add comment</td>
+                                        <td>
+                                            <a href="#"><i class="fas fa-eye"></i></a>
+                                            <a href="#"> <i class="fas fa-chart-bar" style="color: #ffa263;"></i></a>
+                                            <a href="#"><i class="fas fa-info-circle" style="color: #ffb0fc;"></i></a>
+                                        </td>
+                                    </tr>
+                
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card -->
+            </div>
+            <div class="draggable-card col-md-12" oncontextmenu="return showContextMenu(event);">
+                <!-- Card -->
+                
+                <div class="card mb-4" id="box2">
+                    <div id="close_btn1">
+                        <button class="btn btn-sm float-right" id="close"
+                            onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'><i
+                                class="fas fa-times"></i></button>
+                    </div>
+                    <!--Card content-->
+                   
+                    <div class="card-body">
+
+                        <div>
+                            <p id="demo"></p>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- Card -->
+            </div>
+            
+        </div>
+        <div id="contextMenu" class="context-menu">
+            <ul>
+                <li>Add a event listener</li>
+                <li>Disble default behaviour</li>
+                <li>Design context menu</li>
+                <li>Show the context menu</li>
+                <li>Hide on mouse click</li>
+                <li>Hide on escape key</li>
+            </ul>
+        </div>
+    </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/rowreorder/1.2.6/js/dataTables.rowReorder.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/fixedcolumns/3.3.2/js/dataTables.fixedColumns.min.js"></script>
+
+        <script type="text/javascript" src="./js/index.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                // Setup - add a text input to each footer cell
+                $('#mytable thead th').each(function () {
+                    var title = $('#mytable tfoot th').eq($(this).index()).text();
+                    if (title != "") {
+                        $(this).html('<input class="form-control" type="text" placeholder="' + title +
+                            '" />');
+                    }
+                });
+
+                // DataTable
+                var table = $('#mytable').DataTable({
+                    //responsive:true,
+
+                    "scrollX": true,
+                    "autoWidth": false,
+                    scrollCollapse: true,
+                    "columnDefs": [{
+                        "width": '20%',
+                        targets: [2, 3],
+                        "searchable": false,
+                        "targets": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 19, 20]
+                    }],
+                    "dom": '<"toolbar">l<"top"f>rt<"bottom"ip><"clear">',
+                });
+
+                // Apply the search
+                table.columns().eq(0).each(function (colIdx) {
+                    if (!table.settings()[0].aoColumns[colIdx].bSearchable) {
+                        table.column(colIdx).header().innerHTML = table.column(colIdx).header()
+                            .innerHTML;
+                    }
+                    $('input', table.column(colIdx).header()).on('keyup change', function () {
+                        table
+                            .column(colIdx)
+                            .search(this.value)
+                            .draw();
+                    });
+
+                });
+                $("div.toolbar").html(
+                    '<div class="btn-group flex-wrap" role="group" aria-label="Button group with nested dropdown">' +
+                    '<div class="btn-group m-1" role="group">' +
+                    '<p class="mr-2">User: </p>' +
+                    '<button id="btnGroupDrop1" type="button" class="btn btn-secondary btn-sm m-1 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Regress</button>' +
+                    '<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">' +
+                    '<a class="dropdown-item" href="#">Dropdown link</a>' +
+                    '<a class="dropdown-item" href="#">Dropdown link</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="btn-group" role="group">' +
+                    '<p class="mr-2 ml-2">View: </p>' +
+                    '<button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary m-1 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Flat</button>' +
+                    '<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">' +
+                    '<a class="dropdown-item" href="#">Dropdown link</a>' +
+                    '<a class="dropdown-item" href="#">Dropdown link</a>' +
+                    '</div>' +
+                    '</div>' +
+                    '<button type="button" class="btn btn-secondary btn-sm m-1">CompareSessions</button>' +
+                    '<button type="button" class="btn btn-secondary btn-sm m-1">Cleanup/Delete Sessions</button>' +
+                    '<button type="button" class="btn btn-secondary btn-sm m-1">TrendOut</button>' +
+                    '<button type="button" class="btn btn-secondary btn-sm m-1">TrendIn</button>' +
+                    '<div class="form-check ml-2">' +
+                    '<input type="checkbox" class="form-check-input" id="exampleCheck1">' +
+                    '<label class="form-check-label" for="exampleCheck1">Bulk Edit</label>' +
+                    '</div>' +
+                    '</div>'
+                );
+
+            });
+        </script>
+
+        <script type="text/javascript">
+            window.onclick = hideContextMenu;
+            window.onkeydown = listenKeys;
+            var contextMenu = document.getElementById('contextMenu');
+
+            function showContextMenu(event) {
+                contextMenu.style.display = 'block';
+                contextMenu.style.left = event.clientX + 'px';
+                contextMenu.style.top = event.clientY + 'px';
+                return false;
+            }
+
+            function hideContextMenu() {
+                contextMenu.style.display = 'none';
+            }
+
+            function listenKeys(event) {
+                var keyCode = event.which || event.keyCode;
+                if (keyCode == 27) {
+                    hideContextMenu();
+                }
+            }
+        </script>
+        <script>
+            $(document).ready(function () {
+                var table = $('#mytable').DataTable();
+
+                $('#mytable tbody').on('click', 'tr', function () {
+                    var data = table.row(this).data();
+                    document.getElementById("demo").innerHTML = (
+                        '<table class="table table-bordered table-dark mt-4">' +
+                        '<tbody>' +
+                        '<tr>' +
+                        '<td>Name</td>' +
+                        '<td>' + data[1] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>State</td>' +
+                        '<td>' + data[2] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>Stopped By Rule</td>' +
+                        '<td>' + data[3] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>tot</td>' +
+                        '<td>' + data[4] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>R</td>' +
+                        '<td>' + data[5] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>Q</td>' +
+                        '<td>' + data[6] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>P</td>' +
+                        '<td>' + data[7] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>F</td>' +
+                        '<td>' + data[8] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>W</td>' +
+                        '<td>' + data[9] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>A</td>' +
+                        '<td>' + data[10] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>U</td>' +
+                        '<td>' + data[11] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>Summery</td>' +
+                        '<td>' + data[12] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>Summery log</td>' +
+                        '<td>' + data[13] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>Sys.Ev</td>' +
+                        '<td>' + data[14] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>D.Ready</td>' +
+                        '<td>' + data[15] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>D.Miss</td>' +
+                        '<td>' + data[16] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>Start</td>' +
+                        '<td>' + data[17] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>End</td>' +
+                        '<td>' + data[18] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>Comment</td>' +
+                        '<td>' + data[19] + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>Action</td>' +
+                        '<td>' + data[20] + '</td>' +
+                        '</tr>' +
+
+                        '</tbody>' +
+                        '</table>'
+                    );
+                });
+            });
+        </script>
+        <script>
+            $("#button").click(function () {
+                if ($(this).html() == "-") {
+                    $(this).html("+");
+                } else {
+                    $(this).html("-");
+                }
+                $("#box").slideToggle();
+
+            });
+
+            $("#button1").click(function () {
+                if ($(this).html() == "-") {
+                    $(this).html("+");
+                } else {
+                    $(this).html("-");
+                }
+                $("#box1").slideToggle();
+
+            });
+            $("#button2").click(function () {
+                if ($(this).html() == "-") {
+                    $(this).html("+");
+                } else {
+                    $(this).html("-");
+                }
+                $("#box2").slideToggle();
+
+            });
+        </script>
+
+</body>
+
+</html>

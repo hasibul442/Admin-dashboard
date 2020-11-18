@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+
+    <!-----Bootstrap CDN---------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <!------------Responsive Table cdn------------->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/rowreorder/1.2.6/css/rowReorder.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <!-----Draggable CDN---------->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="planner.css">
+    <link rel="stylesheet" href="treetable.css">
+
+    <link rel="icon" href="img/iconfinder_76_5027870.png" type="image/icon type">
+</head>
+
+<body>
+
+    <input type="checkbox" id="check">
+    <input type="checkbox" id="check1">
+    <input type="checkbox" id="check2">
+    <input type="checkbox" id="check3">
+    <!--header area start-->
+    <header>
+        <div class="row">
+            <div class="col-2">
+                <div class="left_area">
+                    <h3>VMS <span>(1.2.32)</span></h3>
+                </div>
+
+            </div>
+            <div class="col-1">
+                <label for="check">
+                    <i class="fas fa-bars" id="sidebar_btn"></i>
+                </label>
+                <label for="check1">
+                    <i class="fas fa-chevron-circle-down" id="sidebar_btn1"></i>
+                </label>
+            </div>
+            <div class="col-2 direction1">
+                <p class="direction">Home>Planner></p>
+            </div>
+            <div class="col-4" id="search">
+                <!-- Search form -->
+                <div class="md-form mt-0 active-purple active-purple-2">
+                    <input class="form-control border-0" type="text" placeholder="Keyword" aria-label="Search"
+                        id="keyword">
+                </div>
+
+            </div>
+            <div class="col-3">
+
+                <div class="right_area float-right">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-user-tie"></i></a></li>
+                        <li><a href="#"><i class="fas fa-bell"></i></a></li>
+                        <li><a href="#"><i class="fas fa-power-off"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--header area end-->
+    <!--mobile navigation bar start-->
+    <div class="mobile_nav">
+        <div class="nav_bar">
+            <img src="./img/bamo_logo_design_dark.webp" class="mobile_profile_image" alt="">
+            <i class="fa fa-bars nav_btn"></i>
+        </div>
+        <div class="mobile_nav_items">
+            <a href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
+            <a href="planner.html"><i class="fas fa-lightbulb"></i><span>Planner</span></a>
+            <a href="#"><i class="fas fa-cubes"></i><span>Tests</span></a>
+            <a href="#"><i class="fab fa-artstation"></i><span>Regressions</span></a>
+            <a href="#"><i class="fas fa-envelope"></i><span>Messages</span></a>
+            <a href="#"><i class="fas fa-bell"></i><span>Notification</span></a>
+            <a href="#"><i class="fas fa-calculator"></i><span>Metrics</span></a>
+            <a href="#"><i class="fas fa-bug"></i><span>Debug</span></a>
+            <a href="#"><i class="fas fa-chart-area"></i><span>Charts</span></a>
+            <a href="#"><i class="fas fa-cogs"></i><span>Settings</span></a>
+            <a href="#"><i class="fab fa-audible"></i><span>Adminstration</span></a>
+            <a href="#"><i class="fas fa-power-off"></i><span>Log Out</span></a>
+        </div>
+    </div>
+    <!--mobile navigation bar end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+        <div class="profile_info text-center">
+            <img src="./img/bamo_logo_design_dark.webp" class="profile_image" alt="">
+        </div>
+        <a href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
+        <hr>
+        <a href="planner.html"><i class="fas fa-lightbulb"></i><span>Planner</span></a>
+        <a href="test.html"><i class="fas fa-cubes"></i><span>Tests</span></a>
+        <a href="#"><i class="fab fa-artstation"></i><span>Regressions</span></a>
+        <a href="#"><i class="fas fa-envelope"></i><span>Messages</span></a>
+        <hr>
+        <a href="#"><i class="fas fa-calculator"></i><span>Metrics</span></a>
+        <a href="#"><i class="fas fa-bug"></i><span>Debug</span></a>
+        <a href="#"><i class="fas fa-chart-area"></i><span>Charts</span></a>
+        <hr>
+        <a href="#"><i class="fas fa-cogs"></i><span>Settings</span></a>
+        <a href="#"><i class="fab fa-audible"></i><span>Adminstration</span></a>
+    </div>
+    <!--sidebar end-->
+
+    <div class="content" > 
+        <!-- Card deck -->
+        <div class="card-deck">
+
+            <div class="draggable-card col-md-6" oncontextmenu="return showContextMenu(event);">
+                
+                <!-- Card -->
+                <div class="card mb-4" id="resizable">
+                    
+                    <!--Card content-->
+                    <div class="row ">
+                        <div class="col-sm-8 mt-1">
+                            <h5 class="pl-1">Summary</h5>
+                        </div>
+                        <div class="col-sm-4 mt-1">
+                            <div class="float-right">
+                                <label for="check2">
+                                    <i class="fas fa-chevron-circle-down" id="minimuise"></i>
+                                </label>
+                                <label for="check3">
+                                    <i class="fas fa-chevron-circle-down" id="close1"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" id="box">
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-hierarch-tab" data-toggle="tab"
+                                    href="#nav-hierarch" role="tab" aria-controls="nav-hierarch"
+                                    aria-selected="true">Hierarchy</a>
+                                <a class="nav-item nav-link" id="nav-modules-tab" data-toggle="tab" href="#nav-modules"
+                                    role="tab" aria-controls="nav-modules" aria-selected="false">Modules</a>
+                                <a class="nav-item nav-link" id="nav-group-tab" data-toggle="tab" href="#nav-group"
+                                    role="tab" aria-controls="nav-group" aria-selected="false">Group</a>
+                                <a class="nav-item nav-link" id="nav-asserts-tab" data-toggle="tab" href="#nav-asserts"
+                                    role="tab" aria-controls="nav-asserts" aria-selected="false">Asserts</a>
+                                <a class="nav-item nav-link" id="nav-statistics-tab" data-toggle="tab"
+                                    href="#nav-statistics" role="tab" aria-controls="nav-statistics"
+                                    aria-selected="false">Statistics</a>
+                                <a class="nav-item nav-link" id="nav-tests-tab" data-toggle="tab" href="#nav-tests"
+                                    role="tab" aria-controls="nav-tests" aria-selected="false">Testes</a>
+                            </div>
+                        </nav>
+                        <div>
+                            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <button class="btn border border-dark"><i class="fas fa-star-of-life"></i></button>
+                                    <button class="btn border border-dark"><i class="fas fa-superscript"></i></button>
+                                </div>
+                                <div class="input-group">
+                                    <select class="form-control">
+                                        <option>All User</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                    <button class="btn border border-dark"><i class="fas fa-align-left"></i></button>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div>
+                            <p class="text-center">Lorem Ipsum is simply dummy text of the<br> printing and typesetting
+                                industry. Lorem Ipsum has been </p>
+                        </div>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-hierarch" role=" tabpanel"
+                                aria-labelledby="nav-hierarch-tab">1</div>
+                            <div class="tab-pane fade" id="nav-modules" role="tabpanel"
+                                aria-labelledby="nav-modules-tab">2</div>
+                            <div class="tab-pane fade" id="nav-group" role="tabpanel" aria-labelledby="nav-group-tab">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered hover display mt-3"  id="tree1">
+                                        <thead>
+                                            <tr>
+                                                <th>Group</th>
+                                                <th><i class="fas fa-certificate text-warning"></i></th>
+                                                <th><i class="fas fa-circle text-danger"></i></th>
+                                                <th>Score</th>
+                                                <th>Instances</th>
+                                                <th>U+C</th>
+                                                <th>C</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="sortable1" class="connectedSortable">
+
+                                            <tr data-tt-id='1'>
+                                                <td><i class="text-success far fa-file-alt"></i>::alu_monitor::add</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                            style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                            style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div>
+                                                        <p>40.00%</p>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                            style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                            style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div>
+                                                        <p>40.00%</p>
+                                                    </div>
+                                                </td>
+                                                <td>42</td>
+                                                <td>25</td>
+                                            </tr>
+                                            <tr data-tt-id='1-1' data-tt-parent-id='1'>
+                                                <td><i class="text-success far fa-file-alt"></i> Operand_A</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                            style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                            style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div>
+                                                        <p>40.00%</p>
+                                                    </div>
+                                                </td>
+                                                <td></td>
+                                                <td>14</td>
+                                                <td>7</td>
+                                            </tr>
+                                            <tr data-tt-id='1-2' data-tt-parent-id='1'>
+                                                <td><i class="text-success far fa-file-alt"></i> Operand_B</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                            style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                            style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div>
+                                                        <p>40.00%</p>
+                                                    </div>
+                                                </td>
+                                                <td></td>
+                                                <td>14</td>
+                                                <td>8</td>
+                                            </tr>
+                                            <tr data-tt-id='1-3' data-tt-parent-id='1'>
+                                                <td><i class="text-success far fa-file-alt"></i>
+                                                    alu_pkg:alu_monitor::alu.....</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                            style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                            style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div>
+                                                        <p>40.00%</p>
+                                                    </div>
+                                                </td>
+                                                <td></td>
+                                                <td>42</td>
+                                                <td>25</td>
+                                            </tr>
+                                            <tr data-tt-id='1-4' data-tt-parent-id='1'>
+                                                <td><i class="text-success far fa-file-alt"></i> uvm_text_top.env.alu
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                            style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                            style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div>
+                                                        <p>40.00%</p>
+                                                    </div>
+                                                </td>
+                                                <td></td>
+                                                <td>42</td>
+                                                <td>25</td>
+                                            </tr>
+                                            <tr data-tt-id='2'>
+                                                <td><i class="text-success far fa-file-alt"></i>
+                                                    alu_pkg:alu_monitor::alu.....</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                            style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                            style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div>
+                                                        <p>40.00%</p>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                            style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                            style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div>
+                                                        <p>40.00%</p>
+                                                    </div>
+                                                </td>
+                                                <td>42</td>
+                                                <td>25</td>
+                                            </tr>
+                                            <tr data-tt-id='3'>
+                                                <td><i class="text-success far fa-file-alt"></i>
+                                                    alu_pkg:alu_monitor::alu.....</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                            style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                            style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div>
+                                                        <p>40.00%</p>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                            style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-danger" role="progressbar"
+                                                            style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div>
+                                                        <p>40.00%</p>
+                                                    </div>
+                                                </td>
+                                                <td>42</td>
+                                                <td>25</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="nav-asserts" role="tabpanel"
+                                aria-labelledby="nav-asserts-tab"> </div>
+
+                            <div class="tab-pane fade" id="nav-statistics" role="tabpanel"
+                                aria-labelledby="nav-statistics-tab">5</div>
+                            <div class="tab-pane fade" id="nav-tests" role="tabpanel" aria-labelledby="nav-tests-tab">6
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Card -->
+            </div>
+
+            <div class="draggable-card col-md-6" oncontextmenu="return showContextMenu(event);">
+                <!-- Card -->
+                <div class="card mb-4" id="resizable1">
+
+                    <!--Card content-->
+                    <div class="row ">
+                        <div class="col-sm-8 mt-1">
+                            <h5 class="pl-1">HVP</h5>
+                        </div>
+                        <div class="col-sm-4 mt-1">
+                            <div class="float-right">
+                                <button class="btn btn-outline-primary" id="button1">-</button>
+                                <button class="btn btn-outline-danger" id="button1">X</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" id="box1">
+                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="#">Dropdown link</a>
+                                    <a class="dropdown-item" href="#">Dropdown link</a>
+                                </div>
+                            </div>
+
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="far fa-file-powerpoint"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="#">Dropdown link</a>
+                                    <a class="dropdown-item" href="#">Dropdown link</a>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary"><i class="far fa-file-excel"></i></button>
+                            <button type="button" class="btn btn-secondary"><i class="far fa-file-word"></i></button>
+                            <button type="button" class="btn btn-secondary"><i class="fas fa-times"></i></button>
+                            <button type="button" class="btn btn-secondary"><i
+                                    class="fas fa-arrow-alt-circle-up"></i></button>
+                            <button type="button" class="btn btn-secondary"><i
+                                    class="fas fa-arrow-alt-circle-down"></i></button>
+                            <button type="button" class="btn btn-secondary"><i class="fas fa-calendar-alt"></i></button>
+                            <button type="button" class="btn btn-secondary"><i
+                                    class="fas fa-square-root-alt"></i></button>
+                            <button type="button" class="btn btn-secondary"><i class="far fa-file-excel"></i></button>
+                            <button type="button" class="btn btn-secondary"><i class="far fa-file-word"></i></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control"
+                                aria-label="Text input with segmented dropdown button">
+                            <div class="input-group-append">
+
+                                <button type="button"
+                                    class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                    <button type="button" class="btn btn-outline-secondary"><i
+                                            class="fas fa-filter"></i></button>
+                                    <button type="button" class="btn btn-outline-secondary"><i
+                                            class="fas fa-list"></i></button>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <div role="separator" class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Separated link</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <table class="table  mt-3 " id="tree2">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>atr</th>
+                                        <th>Score</th>
+                                        <th>Group</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sortable2" class="connectedSortable">
+                                    <tr data-tt-id='1'>
+                                        <td><i class="far fa-file-alt"> Acknowledgements.rtf</i></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr data-tt-id='2'>
+                                        <td><i class="text-success far fa-file-alt"></i> New_Plan_2</td>
+                                        <td>-</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div>
+                                                <p>40.00%</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div>
+                                                <p>40.00%</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-tt-id='2-1' data-tt-parent-id='2'>
+                                        <td><i class="text-primary fas fa-file-invoice"></i> l ft44_2: Feature_1</td>
+                                        <td>-</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div>
+                                                <p>40.00%</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div>
+                                                <p>40.00%</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-tt-id='2-1-1' data-tt-parent-id='2-1'>
+                                        <td><i class="text-warning far fa-file"></i> l ft44_1: Feature_1</td>
+                                        <td>-</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div>
+                                                <p>40.00%</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div>
+                                                <p>40.00%</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-tt-id='2-1-1-1' data-tt-parent-id='2-1-1'>
+                                        <td><i class="text-danger far fa-file-excel"></i> Measure_1</td>
+                                        <td>-</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div>
+                                                <p>40.00%</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div>
+                                                <p>40.00%</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-tt-id='2-1-1-1-1' data-tt-parent-id='2-1-1-1'>
+                                        <td><i class="text-info far fa-file-code"></i>
+                                            alu_pkg::ali_monitor::add_trans.op</td>
+                                        <td>-</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div>
+                                                <p>40.00%</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 40%;" aria-valuenow="40" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 60%;" aria-valuenow="60" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div>
+                                                <p>40.00%</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr data-tt-id='2-2' data-tt-parent-id='2'>
+                                        <td><i class="text-primary fas fa-file-invoice"></i> 2 ft44_3: Feature_2</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- Card -->
+            </div>
+
+            <div class="draggable-card col-md-6">
+                <!-- Card -->
+                <div class="card mb-4" id="resizable1">
+
+                    <!--Card content-->
+                    <div>
+
+                    </div>
+                    <div class="card-body" id="box1">
+                        <div>
+                            <p id="demo"></p>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- Card -->
+            </div>
+
+
+
+        </div>
+        <!-- Card deck -->
+        <div id="contextMenu" class="context-menu">
+            <ul>
+                <li>Add a event listener</li>
+                <li>Disble default behaviour</li>
+                <li>Design context menu</li>
+                <li>Show the context menu</li>
+                <li>Hide on mouse click</li>
+                <li>Hide on escape key</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    
+    
+    <!---------Draggable CDN------------------------>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/rowreorder/1.2.6/js/dataTables.rowReorder.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    
+    <script type="text/javascript" src="./js/index.js"></script>
+
+    <script type="text/javascript" src="./js/tretable.js"></script>
+
+
+
+
+   <script type="text/javascript">
+
+    window.onclick = hideContextMenu;
+    window.onkeydown = listenKeys;
+    var contextMenu = document.getElementById('contextMenu');
+
+    function showContextMenu (event) {
+        contextMenu.style.display = 'block';
+        contextMenu.style.left = event.clientX + 'px';
+        contextMenu.style.top = event.clientY + 'px';
+        return false;
+    }
+
+    function hideContextMenu () {
+        contextMenu.style.display = 'none';
+    }
+
+    function listenKeys (event) {
+        var keyCode = event.which || event.keyCode;
+        if(keyCode == 27){
+            hideContextMenu();
+        }
+    }
+
+</script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#tree1').DataTable({
+                responsive:true,
+                "paging":   false,
+        "ordering": false,
+        "info":     false,
+
+            
+        });
+
+        $('#tree1 tbody').on('click', 'tr', function () {
+        var data = table.row( this ).data();
+        document.getElementById("demo").innerHTML=(
+            '<table class="table table-bordered table-dark">'+
+            '<tbody>'+
+                '<tr>'+
+                    '<td>Group</td>'+
+                    '<td>'+data[0]+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td>Score</td>'+
+                    '<td>'+data[3]+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td>Instance</td>'+
+                    '<td>'+data[4]+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td>U+C</td>'+
+                    '<td>'+data[5]+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td>C</td>'+
+                    '<td>'+data[6]+'</td>'+
+                '</tr>'+
+            '</tbody>'+
+        '</table>'
+        );
+    } );
+        });
+    </script>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#tree2').DataTable({
+            "ordering": false
+        });
+
+    $('#tree2 tbody').on('click', 'tr', function () {
+    var data = table.row( this ).data();
+    document.getElementById("demo").innerHTML=(
+        '<table class="table table-bordered table-dark">'+
+            '<tbody>'+
+                '<tr>'+
+                    '<td>Name</td>'+
+                    '<td>'+data[0]+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td>atr</td>'+
+                    '<td>'+data[1]+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td>Score</td>'+
+                    '<td>'+data[2]+'</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td>Group</td>'+
+                    '<td>'+data[3]+'</td>'+
+                '</tr>'+
+            '</tbody>'+
+        '</table>'
+    );
+} );
+    });
+</script>
+
+<script>
+    
+    $("#button").click(function () {
+        if ($(this).html() == "-") {
+            $(this).html("+");
+        } else {
+            $(this).html("-");
+        }
+        $("#box").slideToggle();
+    });
+
+    $("#button1").click(function () {
+        if ($(this).html() == "-") {
+            $(this).html("+");
+        } else {
+            $(this).html("-");
+        }
+        $("#box1").slideToggle();
+    });
+    $("#tree1").treetable({
+        expandable: true
+    });
+    $("#tree2").treetable({
+        expandable: true
+    });
+
+    $('.draggable-card').draggable();
+    $("#sortable1, #sortable2").sortable({
+        connectWith: ".connectedSortable"
+    });
+    $(function () {
+        $("#resizable").resizable();
+        $("#resizable1").resizable();
+    });
+
+</script>
+<script>
+    window.onload = function(){
+    document.getElementById('close').onclick = function(){
+        this.parentNode.parentNode.parentNode
+        .removeChild(this.parentNode.parentNode);
+        return false;
+    };
+};
+</script>
+
+
+</body>
+
+</html>
